@@ -9,6 +9,9 @@ public interface CustomerEntityMapper {
 
 CustomerEntity toCostumer (Customer customer);
 
+Customer toCustomer (CustomerEntity customerEntity);
+
+
 }
 
 

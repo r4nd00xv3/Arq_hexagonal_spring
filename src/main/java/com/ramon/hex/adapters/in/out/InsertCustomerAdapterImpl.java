@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public abstract class InsertCustomerAdapter implements InsertCustomerOutputPort {
+public  class InsertCustomerAdapterImpl implements InsertCustomerOutputPort {
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -16,10 +16,15 @@ public abstract class InsertCustomerAdapter implements InsertCustomerOutputPort 
     private CustomerEntityMapper customerEntityMapper;
 
 
-
-    public void insert (Customer customer){
-
+    @Override
+    public void insert(Customer customer, String zipCode) {
         var customerEntity = customerEntityMapper.toCostumer(customer);
         customerRepository.save(customerEntity);
+
+    }
+
+    @Override
+    public void insert(Customer customer) {
+
     }
 }
