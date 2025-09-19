@@ -3,6 +3,7 @@ rand:
   client:
     address:
       url: http://localhost:8082/addresses
+
 spring:
   data:
     mongodb:
