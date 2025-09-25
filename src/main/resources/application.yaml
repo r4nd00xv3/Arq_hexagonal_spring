@@ -1,3 +1,6 @@
+server:
+  port:8081
+
 
 rand:
   client:
@@ -5,6 +8,17 @@ rand:
       url: http://localhost:8082/addresses
 
 spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          FindAddressByZipCodeClient:
+            url: http://localhost:8082/addresses
   data:
     mongodb:
-      uri: mongodb://localhost:27017/hexagonal
+      host: localhost
+      port: 27017
+      authentication-database: admin
+      username: root
+      password: example
+      database: hexagonal

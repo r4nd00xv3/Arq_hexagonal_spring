@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/v1/customers")
 public class CustomerController {
@@ -35,6 +37,7 @@ public class CustomerController {
 
 
 
+    @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CustomerRequest customerRequest) {
         var customer = customerMapper.toCustomer(customerRequest);
         insertCustomerInputPort.inser(customer, customerRequest.getZipCode());
@@ -45,7 +48,7 @@ public class CustomerController {
     @GetMapping("/{id}")
     public ResponseEntity<CustomerResponse> get(@PathVariable final String id) {
         var customer = findCustomerByIdInputPort.find(id);
-        var customerResponse = customerMapper.toCustomerResponse(customer);
+        var customerResponse = customerMapper.toCustomerResponse(Optional.ofNullable(customer));
         return ResponseEntity.ok().body(customerResponse);
 
     }
