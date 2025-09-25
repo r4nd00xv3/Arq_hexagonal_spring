@@ -1,5 +1,5 @@
 server:
-  port:8081
+  port: 8081
 
 
 rand:
@@ -7,13 +7,7 @@ rand:
     address:
       url: http://localhost:8082/addresses
 
-spring:
-  cloud:
-    openfeign:
-      client:
-        config:
-          FindAddressByZipCodeClient:
-            url: http://localhost:8082/addresses
+
   data:
     mongodb:
       host: localhost
